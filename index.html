@@ -124,10 +124,11 @@ footer a:hover {color:#e6f0ff;}
 <section>
     <h2 class="section-title">Courses Offered</h2>
     <div class="courses">
-        <div class="course-card"><h3>NISM VA</h3><button>Add to Cart</button></div>
-        <div class="course-card"><h3>NISM VB</h3><button>Add to Cart</button></div>
-        <div class="course-card"><h3>NISM 8</h3><button>Add to Cart</button></div>
-        <div class="course-card"><h3>SEBI Certification</h3><button>Add to Cart</button></div>
+        <div class="course-card"><h3>NISM VA</h3><button class="viewBtn" data-course="va">View</button></div>
+        <div class="course-card"><h3>NISM VB</h3><button class="viewBtn" data-course="vb">View</button></div>
+        <div class="course-card"><h3>NISM VIII</h3><button class="viewBtn" data-course="viii">View</button></div>
+        <div class="course-card"><h3>SEBI Certification</h3><button class="viewBtn" data-course="Certification">View</button></div>
+
     </div>
 </section>
 
@@ -236,6 +237,41 @@ footer a:hover {color:#e6f0ff;}
 </footer>
 
 <script>
+    // Course Data
+const courses = {
+  va: {
+    title:"NISM Series VA – Mutual Fund (MF)",
+    tagline:"Launch your career in Mutual Funds, Wealth Management & Financial Advisory.",
+    importance:["SEBI-mandated certification for mutual fund advisory and distribution roles","Builds strong fundamentals in mutual funds, investor suitability & financial planning"],
+    jobs:["Mutual Fund Advisor | Relationship Manager | Wealth Advisor","AMCs | Banks | NBFCs | Wealth Management & Distribution Firms"],
+    benefits:["Improves job eligibility in MF & advisory roles","Enhances financial literacy and personal investment skills","Builds long-term career growth in wealth management"],
+    cta:"✅ Enroll Now & Become a Certified Mutual Fund Professional\n🚀 Start Your Career in Mutual Funds & Wealth Advisory"
+  },
+  vb: {
+    title:"NISM Series VB – Securities Markets Foundation",
+    tagline:"Kickstart your finance career with a strong foundation in securities markets.",
+    importance:["Covers basics of financial markets, derivatives, equity & debt instruments","Mandatory for certain SEBI registered roles"],
+    jobs:["Stock Broker | Investment Analyst | Research Associate","Banks | Brokerage Firms | Financial Advisory"],
+    benefits:["Strengthens market understanding","Mandatory for finance roles in India","Enhances employability in financial services"],
+    cta:"✅ Enroll Now & Gain Market Foundation\n🚀 Boost Your Career in Finance"
+  },
+  viii: {
+    title:"NISM Series VIII – Equity Derivatives",
+    tagline:"Master derivative instruments, trading strategies & market regulations.",
+    importance:["Understand derivative products including futures & options","Mandatory for equity derivatives advisory roles"],
+    jobs:["Derivatives Trader | Research Analyst | Portfolio Manager","Stock Exchanges | Brokerage Firms | Investment Banks"],
+    benefits:["Hands-on knowledge of derivatives","Preparation for professional certifications","Career advancement in trading & advisory"],
+    cta:"✅ Enroll Now & Master Equity Derivatives\n🚀 Advance Your Career in Trading & Advisory"
+  },
+  Certification: {
+    title:"SEBI Certification - Abstract Data & Market Information",
+    tagline:"Master Securities Market Data, Reporting & Regulatory Insights.",
+    importance:["SEBI-recognized certification focused on market data, disclosures & reporting","Mandatory for equity derivatives advisory roles","Builds strong foundation in data interpretation, compliance & transparency in capital markets"],
+    jobs:["Compliance Executive | Research Analyst | Market Operations Executive","Stock Exchanges | Stock Broking Firms | Mutual Funds"],
+    benefits:["Develops expertise in securities market data & regulatory reporting","Enhances analytical and interpretation skills for financial information","Supports careers in compliance, research, operations & market surveillance","Improves understanding of SEBI regulations and market disclosures"],
+    cta:"✅ Enroll Now & Become SEBI-Certified in Market Data & Reporting\n🚀 Build a Strong Career in Securities Market Analysis & Compliance"
+  }
+};
 const WHATSAPP_NUMBER = "+91 7977871953"; // Replace with your WhatsApp number
 
 // Modal functionality
@@ -286,3 +322,4 @@ document.querySelectorAll(".faq-item").forEach(item=>{
 
 </body>
 </html>
+
