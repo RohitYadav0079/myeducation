@@ -317,6 +317,20 @@ function showToast() {
     toast.style.display = "block";
     setTimeout(()=>toast.style.display="none",3500);
 }
+    // Open Course Modal
+document.querySelectorAll(".viewBtn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const courseKey = btn.dataset.course;
+    const data = courses[courseKey];
+    courseTitle.textContent = data.title;
+    courseTagline.textContent = data.tagline;
+    courseImportance.innerHTML = data.importance.map(i => `<li>${i}</li>`).join("");
+    courseJobs.innerHTML = data.jobs.map(i => `<li>${i}</li>`).join("");
+    courseBenefits.innerHTML = data.benefits.map(i => `<li>${i}</li>`).join("");
+    courseCTA.textContent = data.cta;
+    courseModal.style.display = "block";
+  });
+});
 
 // Form submission
 document.getElementById("nismForm").addEventListener("submit", function(e){
@@ -351,5 +365,6 @@ document.querySelectorAll(".faq-item").forEach(item=>{
 
 </body>
 </html>
+
 
 
