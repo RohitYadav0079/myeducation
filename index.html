@@ -153,12 +153,33 @@ footer a:hover {color:#e6f0ff;}
 <section>
     <h2 class="section-title">Courses Offered</h2>
     <div class="courses">
+	
         <div class="course-card"><h3>NISM VA</h3><button class="viewBtn" data-course="va">View</button></div>
         <div class="course-card"><h3>NISM VB</h3><button class="viewBtn" data-course="vb">View</button></div>
         <div class="course-card"><h3>NISM VIII</h3><button class="viewBtn" data-course="viii">View</button></div>
         <div class="course-card"><h3>SEBI Certification</h3><button class="viewBtn" data-course="Certification">View</button></div>
-
+        <div class="course-card"><h3>PMS NISM XXI-A</h3><button class="viewBtn" data-course="PMS">View</button></div>
     </div>
+	<div class="modal" id="courseModal">
+  <div class="modal-content">
+    <span class="close" id="closeCourseModal">&times;</span>
+
+    <h2 id="courseTitle"></h2>
+    <p id="courseTagline"></p>
+
+    <h3>Why this course?</h3>
+    <ul id="courseImportance"></ul>
+
+    <h3>Career Opportunities</h3>
+    <ul id="courseJobs"></ul>
+
+    <h3>Benefits</h3>
+    <ul id="courseBenefits"></ul>
+
+    <p id="courseCTA"></p>
+  </div>
+</div>
+
 </section>
 
 <!-- Pricing Section -->
@@ -177,7 +198,7 @@ footer a:hover {color:#e6f0ff;}
         </div>
         <div class="pricing-card popular">
             <h3>NISM VB</h3>
-            <div class="price">₹4,499</div>
+            <div class="price">₹4,999</div>
             <ul>
                 <li>Certified Trainer</li>
                 <li>Updated Syllabus</li>
@@ -187,7 +208,7 @@ footer a:hover {color:#e6f0ff;}
         </div>
         <div class="pricing-card">
             <h3>NISM 8</h3>
-            <div class="price">₹6,499</div>
+            <div class="price">₹6,999</div>
             <ul>
                 <li>Practical Market-Oriented Teaching</li>
                 <li>Mock Tests</li>
@@ -205,6 +226,16 @@ footer a:hover {color:#e6f0ff;}
             </ul>
             <button id="openModal">Enroll Now</button>
         </div>
+		<div class="pricing-card">
+            <h3>PMS NISM XXI-A</h3>
+            <div class="price">₹6,999</div>
+            <ul>
+                <li>Certified Trainer</li>
+                <li>Personalized Stratergies</li>
+                <li>Flexible Learning Options</li>
+            </ul>
+            <button id="openModal">Enroll Now</button>
+        </div>
     </div>
 </section>
 
@@ -213,9 +244,9 @@ footer a:hover {color:#e6f0ff;}
     <h2 class="section-title">What Our Learners Say</h2>
     <div class="testimonials">
         <div class="testimonials-container">
-            <div class="review-card"><h4>John Doe</h4><p>NISM certification helped me advance in my finance career and gain trust from clients.</p></div>
+            <div class="review-card"><h4>Abhishek Mishra</h4><p>NISM certification helped me advance in my finance career and gain trust from clients.</p></div>
             <div class="review-card"><h4>Priya Sharma</h4><p>The learning resources are clear, professional, and well-structured. Highly recommend!</p></div>
-            <div class="review-card"><h4>Rahul Verma</h4><p>Excellent platform for financial knowledge. Registration was simple and smooth.</p></div>
+            <div class="review-card"><h4>Rahul Kendre</h4><p>Excellent platform for financial knowledge. Registration was simple and smooth.</p></div>
         </div>
     </div>
 </section>
@@ -299,9 +330,17 @@ const courses = {
     jobs:["Compliance Executive | Research Analyst | Market Operations Executive","Stock Exchanges | Stock Broking Firms | Mutual Funds"],
     benefits:["Develops expertise in securities market data & regulatory reporting","Enhances analytical and interpretation skills for financial information","Supports careers in compliance, research, operations & market surveillance","Improves understanding of SEBI regulations and market disclosures"],
     cta:"✅ Enroll Now & Become SEBI-Certified in Market Data & Reporting\n🚀 Build a Strong Career in Securities Market Analysis & Compliance"
-  }
+  },
+  PMS: {
+    title:"Portfolio management services/ NISM XXI-A",
+    tagline:"Deliver Customized Investment Strategies & Manage High-Value Portfolios.",
+    importance:["Focuses on professional portfolio construction, asset allocation & risk management","Essential for managing HNI & institutional client investments","Builds expertise in long-term wealth creation, performance tracking & client reporting"],
+    jobs:["Portfolio Manager  | Investment Advisor | Wealth Manager","Fund Manager | PMS Firms | Asset Management Companies"],
+    benefits:["Develops strong skills in portfolio strategy, diversification & risk assessment","Enhances ability to manage client-specific investment goals","Supports careers in PMS, wealth management & investment advisory","Improves understanding of market cycles, performance evaluation & regulatory compliance"],
+    cta:"✅ Enroll Now & Master Portfolio Management Services\n🚀 Build a High-Growth Career in Wealth & Investment Management"
+  },
 };
-const WHATSAPP_NUMBER = "+91 7977871953"; // Replace with your WhatsApp number
+//const WHATSAPP_NUMBER = "+91 7977871953"; // Replace with your WhatsApp number
 
 // Modal functionality
 const modal = document.getElementById("modal");
@@ -318,6 +357,14 @@ function showToast() {
     setTimeout(()=>toast.style.display="none",3500);
 }
     // Open Course Modal
+	const courseModal = document.getElementById("courseModal");
+const courseTitle = document.getElementById("courseTitle");
+const courseTagline = document.getElementById("courseTagline");
+const courseImportance = document.getElementById("courseImportance");
+const courseJobs = document.getElementById("courseJobs");
+const courseBenefits = document.getElementById("courseBenefits");
+const courseCTA = document.getElementById("courseCTA");
+
 document.querySelectorAll(".viewBtn").forEach(btn => {
   btn.addEventListener("click", () => {
     const courseKey = btn.dataset.course;
@@ -328,9 +375,20 @@ document.querySelectorAll(".viewBtn").forEach(btn => {
     courseJobs.innerHTML = data.jobs.map(i => `<li>${i}</li>`).join("");
     courseBenefits.innerHTML = data.benefits.map(i => `<li>${i}</li>`).join("");
     courseCTA.textContent = data.cta;
+	
     courseModal.style.display = "block";
   });
 });
+
+document.getElementById("closeCourseModal").onclick = () => {
+  courseModal.style.display = "none";
+};
+
+window.onclick = (e) => {
+  if (e.target === courseModal) {
+    courseModal.style.display = "none";
+  }
+};
 
 // Form submission
 document.getElementById("nismForm").addEventListener("submit", function(e){
@@ -344,12 +402,12 @@ document.getElementById("nismForm").addEventListener("submit", function(e){
 
     const message = `New NISM Registration:\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nEducation: ${education}\nJob: ${job}\nLocation: ${location}`;
 
-    const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    //const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
     showToast();
     modal.style.display="none";
     this.reset();
-    setTimeout(()=>window.open(whatsappURL,"_blank"),1200);
+    //setTimeout(()=>window.open(whatsappURL,"_blank"),1200);
 });
 
 // FAQ Toggle
@@ -365,6 +423,5 @@ document.querySelectorAll(".faq-item").forEach(item=>{
 
 </body>
 </html>
-
 
 
